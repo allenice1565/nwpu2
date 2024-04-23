@@ -1,0 +1,27 @@
+<script setup>
+import PageHeader from './components/page-header.vue';
+import PageFooter from './components/page-footer.vue';
+</script>
+
+<template>
+    <div class="my-container">
+        <PageHeader />
+        <div class="main">
+            <RouterView />
+        </div>
+        <PageFooter />
+    </div>
+</template>
+<style scoped lang="less">
+.my-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #04060b;
+
+    .main {
+        flex: 1;
+    }
+}
+</style>
