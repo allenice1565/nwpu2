@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 defineOptions({
     name: 'PageHeader',
 });
 
 const router = useRouter();
-const route = useRoute();
 const menuList = ref([
     {
         id: 1,
@@ -16,39 +15,24 @@ const menuList = ref([
             {
                 id: 11,
                 label: '统计',
+                path: '/data-annotation/statistics',
             },
             {
                 id: 12,
                 label: '标注',
+                path: '/data-annotation/annotation',
             },
         ],
     },
     {
         id: 2,
         label: '厚度测量',
-        children: [
-            {
-                id: 21,
-                label: '厚度测量1',
-                path: '/ImageRegistration',
-            },
-        ],
+        path: '/thickness-measurement',
     },
     {
         id: 3,
         label: '十字校正',
-        children: [
-            {
-                id: 31,
-                label: '十字校正1',
-                path: '/HomologyChangeDetection',
-            },
-            {
-                id: 32,
-                label: '十字校正2',
-                path: '/AllogenicChangeDetection',
-            },
-        ],
+        path: '/cross-correction',
     },
     {
         id: 4,
@@ -56,13 +40,18 @@ const menuList = ref([
         children: [
             {
                 id: 41,
-                label: '缺陷检测1',
-                path: '/RoadDetection',
+                label: '模型推理',
+                path: '/defect-detection/model-inference',
             },
             {
                 id: 42,
-                label: '缺陷检测2',
-                path: '/OpticalImageTargetDetection',
+                label: '结果展示',
+                path: '/defect-detection/result-display',
+            },
+            {
+                id: 43,
+                label: '模型训练',
+                path: '/defect-detection/model-training',
             },
         ],
     },
@@ -92,23 +81,90 @@ const menuClick = (path) => {
                 close-on-click-outside
                 unique-opened
             >
-                <el-sub-menu
-                    v-for="item in menuList"
-                    :index="item.id"
-                    popper-class="popper-container"
-                >
-                    <template #title>{{ item.label }}</template>
+                <template v-for="item in menuList">
+                    <el-sub-menu
+                        v-if="item.children"
+                        :index="item.id"
+                        popper-class="header-popper-container"
+                    >
+                        <template #title>{{ item.label }}</template>
+                        <el-menu-item
+                            v-for="subItem in item.children"
+                            :index="subItem.id"
+                            :style="{
+                                '--el-menu-hover-text-color': '#69d7e6',
+                            }"
+                            class="select-none !text-[18px] !leading-[56px] !p-[25px]"
+                            @click="menuClick(subItem.path)"
+                        >
+                            <svg
+                                class="header-menu-item-prefix w-[8px] mr-[12px]"
+                                version="1.1"
+                                id="图层_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0px"
+                                y="0px"
+                                viewBox="0 0 8 12"
+                                style="enable-background: new 0 0 8 12"
+                                xml:space="preserve"
+                            >
+                                <g>
+                                    <rect class="st0" width="4" height="4" />
+                                    <rect
+                                        x="4"
+                                        y="4"
+                                        class="st0"
+                                        width="4"
+                                        height="4"
+                                    />
+                                    <rect
+                                        y="8"
+                                        class="st0"
+                                        width="4"
+                                        height="4"
+                                    />
+                                </g>
+                            </svg>
+                            {{ subItem.label }}</el-menu-item
+                        >
+                    </el-sub-menu>
                     <el-menu-item
-                        v-for="subItem in item.children"
-                        :index="subItem.id"
+                        v-else
+                        :index="item.id"
                         :style="{
                             '--el-menu-hover-text-color': '#69d7e6',
                         }"
                         class="select-none !text-[18px] !leading-[56px] !p-[25px]"
-                        @click="menuClick(subItem.path)"
-                        >{{ subItem.label }}</el-menu-item
+                        @click="menuClick(item.path)"
                     >
-                </el-sub-menu>
+                        <svg
+                            class="header-menu-item-prefix w-[8px] mr-[12px]"
+                            version="1.1"
+                            id="图层_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 8 12"
+                            style="enable-background: new 0 0 8 12"
+                            xml:space="preserve"
+                        >
+                            <g>
+                                <rect class="st0" width="4" height="4" />
+                                <rect
+                                    x="4"
+                                    y="4"
+                                    class="st0"
+                                    width="4"
+                                    height="4"
+                                />
+                                <rect y="8" class="st0" width="4" height="4" />
+                            </g>
+                        </svg>
+                        {{ item.label }}</el-menu-item
+                    >
+                </template>
             </el-menu>
         </div>
         <div class="right"></div>
@@ -124,7 +180,7 @@ const menuClick = (path) => {
     background-color: #0a1225;
     background-image: url('@assets/images/common/header-bg.png');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right top;
 
     .left {
         display: flex;
@@ -150,17 +206,6 @@ const menuClick = (path) => {
         justify-content: center;
         align-items: center;
 
-        :deep(.el-dropdown) {
-            margin-right: 61px;
-            .dropdown-link {
-                font-size: 20px;
-                font-weight: 500;
-                color: #ffffff;
-                border: none;
-                user-select: none;
-            }
-        }
-
         .el-menu--horizontal.el-menu {
             border-bottom: none;
 
@@ -179,12 +224,41 @@ const menuClick = (path) => {
                     border-bottom: none;
                 }
             }
+
+            .el-menu-item {
+                border-bottom: none;
+            }
         }
     }
     .right {
         display: flex;
         align-items: center;
-        background-image: url('@assets/images/home/header-right.png');
+        background-image: url('@assets/images/common/header-exit.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 28px;
+        height: 32px;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+}
+</style>
+<style lang="less">
+.header-popper-container {
+    .el-menu-item {
+        .header-menu-item-prefix {
+            user-select: none;
+            -webkit-user-drag: none;
+            .st0 {
+                fill: #fff;
+            }
+        }
+
+        &.is-active .st0,
+        &:hover .st0 {
+            fill: #60c6d4;
+        }
     }
 }
 </style>

@@ -18,9 +18,6 @@ import PageFooter from './components/page-footer.vue';
     height: 100vh;
     display: flex;
     flex-direction: column;
-    // background-image: url('@assets/images/common/bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
 
     .main {
         flex: 1;
