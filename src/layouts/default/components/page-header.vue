@@ -122,6 +122,9 @@ const menuClick = (path) => {
     align-items: center;
     padding: 10px 20px 16px;
     background-color: #0a1225;
+    background-image: url('@assets/images/common/header-bg.png');
+    background-repeat: no-repeat;
+    background-position: right;
 
     .left {
         display: flex;
