@@ -30,7 +30,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <div class="footer text-[16px] text-white opacity-[0.59]">
+    <div class="footer text-[16px] text-white">
         <div class="left">
             <div class="input flex-1 border-solid border-r border-[#57595D]">
                 <span class="text-[#717171]">输入文件路径：</span

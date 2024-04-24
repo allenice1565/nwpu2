@@ -4,31 +4,35 @@ import icon1 from '@assets/images/home/icon1.png';
 import icon2 from '@assets/images/home/icon2.png';
 import icon3 from '@assets/images/home/icon3.png';
 import icon4 from '@assets/images/home/icon4.png';
+import modelBg1 from '@assets/images/home/model-bg1.png';
+import modelBg2 from '@assets/images/home/model-bg2.png';
+import modelBg3 from '@assets/images/home/model-bg3.png';
+import modelBg4 from '@assets/images/home/model-bg4.png';
 
 const router = useRouter();
 const moduleEntranceList = [
     {
         name: '数据统计',
         icon: icon1,
-        backgroundImg: '',
+        backgroundImg: modelBg1,
         path: '/data-annotation',
     },
     {
         name: '厚度测量',
         icon: icon2,
-        backgroundImg: '',
+        backgroundImg: modelBg2,
         path: '/thickness-measurement',
     },
     {
         name: '十字矫正',
         icon: icon3,
-        backgroundImg: '',
+        backgroundImg: modelBg3,
         path: '/cross-correction',
     },
     {
         name: '缺陷检测',
         icon: icon4,
-        backgroundImg: '',
+        backgroundImg: modelBg4,
         path: '/defect-detection',
     },
 ];
@@ -72,11 +76,13 @@ defineOptions({
 .my-container {
     width: 100%;
     height: 100vh;
-    background-color: pink;
     padding-top: 170px;
     padding-left: 90px;
     padding: 170px 90px 20px;
     overflow: hidden;
+    background-image: url('@assets/images/home/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 
     .earth {
         width: 66px;
@@ -117,7 +123,6 @@ defineOptions({
             min-width: 0;
             flex: 1;
             height: 100%;
-            background-color: bisque;
             margin-right: 40px;
             display: flex;
             flex-direction: column;
@@ -125,6 +130,9 @@ defineOptions({
             align-items: center;
             cursor: pointer;
             transition: transform 0.5s ease;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 20px;
 
             &:hover {
                 transform: scale(1.15);
