@@ -1,12 +1,120 @@
+<template>
+    <div class="header">
+        <div class="left">
+            <img src="@assets/images/home/earth.png" alt="" />
+            <span>工业测量与缺陷检测系统</span>
+        </div>
+        <div class="middle">
+            <el-menu
+                class="el-menu-popper"
+                :ellipsis="false"
+                :default-active="defaultActive"
+                :popper-offset="20"
+                mode="horizontal"
+                background-color="transparent"
+                text-color="#fff"
+                active-text-color="#66D5E3"
+                menu-trigger="click"
+                close-on-click-outside
+                unique-opened
+            >
+                <template v-for="item in menuList">
+                    <el-sub-menu
+                        v-if="item.children"
+                        :index="String(item.id)"
+                        popper-class="header-popper-container"
+                    >
+                        <template #title>{{ item.label }}</template>
+                        <el-menu-item
+                            v-for="subItem in item.children"
+                            :index="String(subItem.id)"
+                            :style="{
+                                '--el-menu-hover-text-color': '#69d7e6',
+                            }"
+                            class="select-none !text-[18px] !leading-[56px] !p-[25px]"
+                            @click="menuClick(subItem.path)"
+                        >
+                            <svg
+                                class="header-menu-item-prefix w-[8px] mr-[12px]"
+                                version="1.1"
+                                id="图层_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0px"
+                                y="0px"
+                                viewBox="0 0 8 12"
+                                style="enable-background: new 0 0 8 12"
+                                xml:space="preserve"
+                            >
+                                <g>
+                                    <rect class="st0" width="4" height="4" />
+                                    <rect
+                                        x="4"
+                                        y="4"
+                                        class="st0"
+                                        width="4"
+                                        height="4"
+                                    />
+                                    <rect
+                                        y="8"
+                                        class="st0"
+                                        width="4"
+                                        height="4"
+                                    />
+                                </g>
+                            </svg>
+                            {{ subItem.label }}</el-menu-item
+                        >
+                    </el-sub-menu>
+                    <el-menu-item
+                        v-else
+                        :index="String(item.id)"
+                        :style="{
+                            '--el-menu-hover-text-color': '#69d7e6',
+                        }"
+                        class="select-none !text-[18px] !leading-[56px] !p-[25px]"
+                        @click="menuClick(item.path)"
+                    >
+                        <svg
+                            class="header-menu-item-prefix w-[8px] mr-[12px]"
+                            version="1.1"
+                            id="图层_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 8 12"
+                            style="enable-background: new 0 0 8 12"
+                            xml:space="preserve"
+                        >
+                            <g>
+                                <rect class="st0" width="4" height="4" />
+                                <rect
+                                    x="4"
+                                    y="4"
+                                    class="st0"
+                                    width="4"
+                                    height="4"
+                                />
+                                <rect y="8" class="st0" width="4" height="4" />
+                            </g>
+                        </svg>
+                        {{ item.label }}</el-menu-item
+                    >
+                </template>
+            </el-menu>
+        </div>
+        <div class="right"></div>
+    </div>
+</template>
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 defineOptions({
     name: 'PageHeader',
 });
 
-const router = useRouter();
 const menuList = ref([
     {
         id: 1,
@@ -56,120 +164,30 @@ const menuList = ref([
         ],
     },
 ]);
+
+const route = useRoute();
+const defaultActive = computed(() => {
+    const flatMenu = [];
+    menuList.value.forEach((item) => {
+        if (Array.isArray(item.children) && item.children.length) {
+            flatMenu.push(...item.children);
+        } else {
+            flatMenu.push(item);
+        }
+    });
+    const matchItem = flatMenu.find((item) => item.path === route.path);
+    if (matchItem) {
+        return String(matchItem.id);
+    }
+    return '1';
+});
+
+const router = useRouter();
 const menuClick = (path) => {
     if (!path) return;
     router.push(path);
 };
 </script>
-<template>
-    <div class="header">
-        <div class="left">
-            <img src="@assets/images/home/earth.png" alt="" />
-            <span>工业测量与缺陷检测系统</span>
-        </div>
-        <div class="middle">
-            <el-menu
-                class="el-menu-popper"
-                :ellipsis="false"
-                :default-active="1"
-                :popper-offset="20"
-                mode="horizontal"
-                background-color="transparent"
-                text-color="#fff"
-                active-text-color="#66D5E3"
-                menu-trigger="click"
-                close-on-click-outside
-                unique-opened
-            >
-                <template v-for="item in menuList">
-                    <el-sub-menu
-                        v-if="item.children"
-                        :index="item.id"
-                        popper-class="header-popper-container"
-                    >
-                        <template #title>{{ item.label }}</template>
-                        <el-menu-item
-                            v-for="subItem in item.children"
-                            :index="subItem.id"
-                            :style="{
-                                '--el-menu-hover-text-color': '#69d7e6',
-                            }"
-                            class="select-none !text-[18px] !leading-[56px] !p-[25px]"
-                            @click="menuClick(subItem.path)"
-                        >
-                            <svg
-                                class="header-menu-item-prefix w-[8px] mr-[12px]"
-                                version="1.1"
-                                id="图层_1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                x="0px"
-                                y="0px"
-                                viewBox="0 0 8 12"
-                                style="enable-background: new 0 0 8 12"
-                                xml:space="preserve"
-                            >
-                                <g>
-                                    <rect class="st0" width="4" height="4" />
-                                    <rect
-                                        x="4"
-                                        y="4"
-                                        class="st0"
-                                        width="4"
-                                        height="4"
-                                    />
-                                    <rect
-                                        y="8"
-                                        class="st0"
-                                        width="4"
-                                        height="4"
-                                    />
-                                </g>
-                            </svg>
-                            {{ subItem.label }}</el-menu-item
-                        >
-                    </el-sub-menu>
-                    <el-menu-item
-                        v-else
-                        :index="item.id"
-                        :style="{
-                            '--el-menu-hover-text-color': '#69d7e6',
-                        }"
-                        class="select-none !text-[18px] !leading-[56px] !p-[25px]"
-                        @click="menuClick(item.path)"
-                    >
-                        <svg
-                            class="header-menu-item-prefix w-[8px] mr-[12px]"
-                            version="1.1"
-                            id="图层_1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            viewBox="0 0 8 12"
-                            style="enable-background: new 0 0 8 12"
-                            xml:space="preserve"
-                        >
-                            <g>
-                                <rect class="st0" width="4" height="4" />
-                                <rect
-                                    x="4"
-                                    y="4"
-                                    class="st0"
-                                    width="4"
-                                    height="4"
-                                />
-                                <rect y="8" class="st0" width="4" height="4" />
-                            </g>
-                        </svg>
-                        {{ item.label }}</el-menu-item
-                    >
-                </template>
-            </el-menu>
-        </div>
-        <div class="right"></div>
-    </div>
-</template>
 <style scoped lang="less">
 .header {
     height: 76px;
