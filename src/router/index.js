@@ -15,15 +15,52 @@ const routes = [
             {
                 path: '/data-annotation',
                 component: () => import('@pages/data-annotation/index.vue'),
-            },
-            {
-                path: '/defect-detection',
-                component: () => import('@pages/defect-detection/index.vue'),
+                redirect: '/data-annotation/statistics',
+                children: [
+                    {
+                        path: '/data-annotation/statistics',
+                        component: () =>
+                            import('@pages/data-annotation/statistics.vue'),
+                    },
+                    {
+                        path: '/data-annotation/annotation',
+                        component: () =>
+                            import('@pages/data-annotation/annotation.vue'),
+                    },
+                ],
             },
             {
                 path: '/thickness-measurement',
                 component: () =>
                     import('@pages/thickness-measurement/index.vue'),
+            },
+            {
+                path: '/defect-detection',
+                redirect: '/defect-detection/model-inference',
+                component: () => import('@pages/defect-detection/index.vue'),
+                children: [
+                    {
+                        path: '/defect-detection/model-inference',
+                        component: () =>
+                            import(
+                                '@pages/defect-detection/model-inference.vue'
+                            ),
+                    },
+                    {
+                        path: '/defect-detection/result-display',
+                        component: () =>
+                            import(
+                                '@pages/defect-detection/result-display.vue'
+                            ),
+                    },
+                    {
+                        path: '/defect-detection/model-training',
+                        component: () =>
+                            import(
+                                '@pages/defect-detection/model-training.vue'
+                            ),
+                    },
+                ],
             },
         ],
     },

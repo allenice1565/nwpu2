@@ -1,3 +1,3 @@
 <template>
-    <div class="data-annotation">data-annotation</div>
+    <router-view />
 </template>
