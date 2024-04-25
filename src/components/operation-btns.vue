@@ -5,11 +5,8 @@
             v-for="(item, index) in operationList"
             :key="index"
             :style="{
-                backgroundImage: `url(${activeIndex === index || hoverIndex === index ? item.activeIcon : item.icon})`,
-                backgroundColor:
-                    activeIndex === index || hoverIndex === index
-                        ? '#73efff'
-                        : '#000',
+                backgroundImage: `url(${activeIndex === index ? item.activeIcon : item.icon})`,
+                backgroundColor: activeIndex === index ? '#73efff' : '#000',
             }"
             :title="item.name"
             @click="handleClick(item, index)"
