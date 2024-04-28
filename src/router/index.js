@@ -27,7 +27,9 @@ const routes = [
                     {
                         path: '/data-annotation/annotation',
                         component: () =>
-                            import('@pages/data-annotation/annotation.vue'),
+                            import(
+                                '@pages/data-annotation/annotation/index.vue'
+                            ),
                     },
                 ],
             },
