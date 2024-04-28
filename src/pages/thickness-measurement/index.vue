@@ -1,10 +1,12 @@
 <template>
     <div class="thickness-measurement">
         <OperationBtns class="operation" :operationList="operationList" />
+        <TaskSetting class="task-setting"></TaskSetting>
     </div>
 </template>
 <script setup>
 import OperationBtns from '@components/operation-btns.vue';
+import TaskSetting from './components/task-setting.vue';
 import transformIcon from '@assets/images/common/operation-icon/transform.png';
 import transformActiveIcon from '@assets/images/common/operation-icon/transform-active.png';
 import importIcon from '@assets/images/common/operation-icon/import.png';
@@ -66,6 +68,13 @@ const operationList = [
     .operation {
         position: absolute;
         left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .task-setting {
+        position: absolute;
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
     }
