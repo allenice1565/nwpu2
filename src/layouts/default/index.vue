@@ -22,7 +22,7 @@ import PageFooter from './components/page-footer.vue';
     .main {
         flex: 1;
         padding: 0 20px;
-        background-color: #0a1226;
+        // background-color: #0a1226;
     }
 }
 </style>

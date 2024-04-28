@@ -1,10 +1,12 @@
 <template>
     <div class="data-annotation__statistics">
         <OperationBtns class="operation" :operationList="operationList" />
+        <TaskSetting class="task-setting"></TaskSetting>
     </div>
 </template>
 <script setup>
 import OperationBtns from '@components/operation-btns.vue';
+import TaskSetting from './components/task-setting.vue';
 import updateIcon from '@assets/images/common/operation-icon/update.png';
 import updateActiveIcon from '@assets/images/common/operation-icon/update-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
@@ -42,6 +44,13 @@ const operationList = [
     .operation {
         position: absolute;
         left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .task-setting {
+        position: absolute;
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
     }

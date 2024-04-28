@@ -20,7 +20,9 @@ const routes = [
                     {
                         path: '/data-annotation/statistics',
                         component: () =>
-                            import('@pages/data-annotation/statistics.vue'),
+                            import(
+                                '@pages/data-annotation/statistics/index.vue'
+                            ),
                     },
                     {
                         path: '/data-annotation/annotation',
