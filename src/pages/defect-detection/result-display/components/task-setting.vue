@@ -1,22 +1,6 @@
 <template>
     <TaskSetting class="task-setting">
-        <template #task-content>
-            <div class="item">
-                <TaskTitle name="型号选择" />
-                <el-select
-                    v-model="versionSelect"
-                    placeholder="请选择"
-                    :teleported="false"
-                >
-                    <el-option
-                        v-for="item in versionOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    />
-                </el-select>
-            </div>
-        </template>
+        <template #task-content> </template>
         <template #result-content>
             <div class="item">
                 <TaskTitle name="检测结果" />
@@ -34,15 +18,24 @@
                     <div class="col">{{ item.shape }}</div>
                     <div class="col">{{ item.hand }}</div>
                 </div>
-                <div class="scale">
-                    <div class="row">
-                        <div class="col">比例尺</div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col">x</div>
-                        <div class="col"></div>
-                    </div>
+            </div>
+            <div class="item">
+                <TaskTitle name="推理结果" />
+                <div class="inference-item">
+                    <div class="label">当前模型:</div>
+                    <div class="value"></div>
+                </div>
+                <div class="inference-item">
+                    <div class="label">ioU:</div>
+                    <div class="value"></div>
+                </div>
+                <div class="inference-item">
+                    <div class="label">Recall:</div>
+                    <div class="value"></div>
+                </div>
+                <div class="inference-item">
+                    <div class="label">Precision:</div>
+                    <div class="value"></div>
                 </div>
             </div>
         </template>
@@ -53,8 +46,19 @@ import { ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
 import TaskTitle from '@components/task-setting-template/task-title.vue';
 
-const versionSelect = ref();
-const versionOptions = ref([
+const modelSelect = ref();
+const modelOptions = ref([
+    {
+        label: '型号1',
+        value: '1',
+    },
+    {
+        label: '型号2',
+        value: '2',
+    },
+]);
+const confidenceSelect = ref();
+const confidenceOptions = ref([
     {
         label: '型号1',
         value: '1',
@@ -85,6 +89,13 @@ const measureResultList = ref([
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+
+    .item-title {
+        font-weight: 500;
+        font-size: 16px;
+        color: #49546b;
+        margin-bottom: 10px;
+    }
 
     :deep(.el-select) {
         --el-fill-color-blank: #040914;
@@ -163,6 +174,27 @@ const measureResultList = ref([
             &:nth-child(even) {
                 flex: 1;
             }
+        }
+    }
+
+    .inference-item {
+        margin-top: 10px;
+        height: 40px;
+        display: flex;
+        line-height: 40px;
+
+        .label {
+            font-weight: 500;
+            font-size: 16px;
+            color: #687692;
+            width: 74px;
+        }
+
+        .value {
+            flex: 1;
+            background: #040914;
+            border-radius: 3px;
+            height: 40px;
         }
     }
 }

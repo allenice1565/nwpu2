@@ -1,10 +1,12 @@
 <template>
     <div class="result-display">
         <OperationBtns class="operation" :operationList="operationList" />
+        <TaskSetting class="task-setting"></TaskSetting>
     </div>
 </template>
 <script setup>
 import OperationBtns from '@components/operation-btns.vue';
+import TaskSetting from './components/task-setting.vue';
 import prevIcon from '@assets/images/common/operation-icon/prev.png';
 import prevActiveIcon from '@assets/images/common/operation-icon/prev-active.png';
 import nextIcon from '@assets/images/common/operation-icon/next.png';

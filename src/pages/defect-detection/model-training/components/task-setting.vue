@@ -1,60 +1,82 @@
 <template>
     <TaskSetting class="task-setting">
         <template #task-content>
-            <div class="item">
-                <TaskTitle name="型号选择" />
-                <el-select
-                    v-model="versionSelect"
-                    placeholder="请选择"
-                    :teleported="false"
-                >
-                    <el-option
-                        v-for="item in versionOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    />
-                </el-select>
+            <div class="task-content">
+                <div class="item">
+                    <div class="label">Backbone:</div>
+                    <div class="value">
+                        <el-select
+                            v-model="backboneSelect"
+                            placeholder=""
+                            :teleported="false"
+                        >
+                            <el-option
+                                v-for="item in backboneOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                            />
+                        </el-select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Epochs:</div>
+                    <div class="value">
+                        <el-input v-model="epochs"></el-input>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Batch-size:</div>
+                    <div class="value">
+                        <el-input v-model="batchSize"></el-input>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Patience:</div>
+                    <div class="value">
+                        <el-input v-model="patience"></el-input>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Optimizer:</div>
+                    <div class="value">
+                        <el-select
+                            v-model="optimizerSelect"
+                            placeholder=""
+                            :teleported="false"
+                        >
+                            <el-option
+                                v-for="item in optimizerOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                            />
+                        </el-select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Data:</div>
+                    <div class="value">
+                        <el-input v-model="data"></el-input>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">Cfg:</div>
+                    <div class="value">
+                        <el-input v-model="cfg"></el-input>
+                    </div>
+                </div>
             </div>
         </template>
-        <template #result-content>
-            <div class="item">
-                <TaskTitle name="检测结果" />
-                <div class="head row">
-                    <div class="col">测点序号</div>
-                    <div class="col">测点坐标</div>
-                    <div class="col">厚度尺寸</div>
-                    <div class="col">人工修正</div>
-                </div>
-                <div class="body row" v-for="item in measureResultList">
-                    <div class="col">{{ item.order }}</div>
-                    <div class="col">
-                        {{ item.position[0] }}<br />{{ item.position[1] }}
-                    </div>
-                    <div class="col">{{ item.shape }}</div>
-                    <div class="col">{{ item.hand }}</div>
-                </div>
-                <div class="scale">
-                    <div class="row">
-                        <div class="col">比例尺</div>
-                        <div class="col"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col">x</div>
-                        <div class="col"></div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        <template #result-content> </template>
     </TaskSetting>
 </template>
 <script setup>
 import { ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
-import TaskTitle from '@components/task-setting-template/task-title.vue';
 
-const versionSelect = ref();
-const versionOptions = ref([
+const backboneSelect = ref();
+const backboneOptions = ref([
     {
         label: '型号1',
         value: '1',
@@ -65,103 +87,68 @@ const versionOptions = ref([
     },
 ]);
 
-const measureResultList = ref([
+const epochs = ref();
+const batchSize = ref();
+const patience = ref();
+const optimizerSelect = ref();
+const optimizerOptions = ref([
     {
-        order: '1',
-        position: ['x1,y1', 'x2,y2'],
-        shape: '10mm*10mm',
-        hand: '10mm*10mm',
+        label: '型号1',
+        value: '1',
     },
     {
-        order: '2',
-        position: ['x1,y1', 'x2,y2'],
-        shape: '10mm*10mm',
-        hand: '10mm*10mm',
+        label: '型号2',
+        value: '2',
     },
 ]);
+const data = ref();
+const cfg = ref();
 </script>
 <style scoped lang="less">
 .item {
     display: flex;
-    flex-direction: column;
-    margin-top: 30px;
+    align-items: center;
+    height: 40px;
+    line-height: 40px;
+    color: #687692;
+    margin-top: 12px;
 
-    :deep(.el-select) {
-        --el-fill-color-blank: #040914;
-
-        margin-top: 10px;
-
-        &__wrapper {
-            box-shadow: none;
-        }
+    .label {
+        width: 80px;
+        font-size: 14px;
     }
 
-    :deep(.el-select__popper) {
-        background-color: #040914;
+    .value {
+        flex: 1;
 
-        .is-selected {
-            background-color: #0d1425;
+        :deep(.el-input) {
+            height: 40px;
         }
-        .is-hovering {
-            background-color: transparent;
-            color: var(--el-color-primary);
-            font-weight: bold;
 
-            &.is-selected {
+        :deep(.el-select) {
+            --el-fill-color-blank: #040914;
+            height: 40px;
+            margin-top: 10px;
+
+            &__wrapper {
+                box-shadow: none;
+            }
+        }
+
+        :deep(.el-select__popper) {
+            background-color: #040914;
+
+            .is-selected {
                 background-color: #0d1425;
             }
-        }
-    }
+            .is-hovering {
+                background-color: transparent;
+                color: var(--el-color-primary);
+                font-weight: bold;
 
-    .row {
-        display: flex;
-
-        .col {
-            padding: 10px;
-            font-weight: 500;
-            font-size: 12px;
-            min-width: 0;
-            flex: 1;
-            text-align: center;
-            color: #fff;
-            background: #040914;
-            border: 1px solid #626262;
-            border-right: none;
-            border-bottom: none;
-            white-space: wrap;
-            word-wrap: break-word;
-
-            &:first-child {
-                border-left: none;
-            }
-        }
-
-        &:first-child {
-            .col {
-                border-top: none;
-            }
-        }
-    }
-
-    .head {
-        margin-top: 15px;
-        .col {
-            border-top: none;
-            font-size: 16px;
-        }
-    }
-
-    .scale {
-        margin-top: 10px;
-
-        .col {
-            &:nth-child(odd) {
-                flex: none;
-                flex-basis: 68px;
-                white-space: nowrap;
-            }
-            &:nth-child(even) {
-                flex: 1;
+                &.is-selected {
+                    background-color: #0d1425;
+                }
             }
         }
     }

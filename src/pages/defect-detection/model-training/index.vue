@@ -1,10 +1,12 @@
 <template>
     <div class="model-training">
         <OperationBtns class="operation" :operationList="operationList" />
+        <TaskSetting class="task-setting"></TaskSetting>
     </div>
 </template>
 <script setup>
 import OperationBtns from '@components/operation-btns.vue';
+import TaskSetting from './components/task-setting.vue';
 import importIcon from '@assets/images/common/operation-icon/import.png';
 import importActiveIcon from '@assets/images/common/operation-icon/import-active.png';
 import savePathIcon from '@assets/images/common/operation-icon/save-path.png';
@@ -23,7 +25,7 @@ const operationList = [
     },
     {
         icon: savePathIcon,
-        activeIcon: savePathIcon,
+        activeIcon: savePathActiveIcon,
         name: '存储路径',
         callback() {},
     },
