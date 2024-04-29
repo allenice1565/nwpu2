@@ -1,5 +1,6 @@
 <template>
     <div class="cross-correction">
+        <img :src="imgSrc" alt="" />
         <OperationBtns class="operation" :operationList="operationList" />
         <TaskSetting class="task-setting"></TaskSetting>
         <DataTransferModal v-model:dialogVisible="dataTransferModalVisible" />
@@ -22,7 +23,9 @@ import nextIcon from '@assets/images/common/operation-icon/next.png';
 import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
+import img from '@assets/images/home/bg.jpg';
 
+const imgSrc = ref(img);
 const dataTransferModalVisible = ref(false);
 const operationList = [
     {
@@ -71,6 +74,13 @@ const operationList = [
     position: relative;
     width: 100%;
     height: 100%;
+
+    & > img {
+        user-select: none;
+        -webkit-user-drag: none;
+        width: 100%;
+        height: 100%;
+    }
 
     .operation {
         position: absolute;

@@ -18,6 +18,7 @@ import PageFooter from './components/page-footer.vue';
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #0a1226;
 
     .main {
         flex: 1;

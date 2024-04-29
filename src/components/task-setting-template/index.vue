@@ -5,18 +5,26 @@
                 <div class="header">
                     <span
                         class="cursor-pointer"
-                        :class="{ activeTab: tab === 'task' }"
-                        @click.stop="tab = 'task'"
+                        :class="{
+                            activeTab: (fixedTab ? fixedTab : tab) === 'task',
+                        }"
+                        @click.stop="
+                            fixedTab ? (tab = fixedTab) : (tab = 'task')
+                        "
                         >任务设置</span
                     >
                     <span
                         class="cursor-pointer"
-                        :class="{ activeTab: tab === 'result' }"
-                        @click.stop="tab = 'result'"
+                        :class="{
+                            activeTab: (fixedTab ? fixedTab : tab) === 'result',
+                        }"
+                        @click.stop="
+                            fixedTab ? (tab = fixedTab) : (tab = 'result')
+                        "
                         >结果分析</span
                     >
                 </div>
-                <template v-if="tab === 'task'">
+                <template v-if="(fixedTab ? fixedTab : tab) === 'task'">
                     <div
                         class="task overflow-x-hidden overflow-y-auto flex flex-col flex-1 h-full"
                     >
@@ -123,6 +131,10 @@ const props = defineProps({
     emptyTask: {
         type: Boolean,
         default: false,
+    },
+    fixedTab: {
+        type: String,
+        default: '',
     },
 });
 const expandStatus = ref(true);

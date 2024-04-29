@@ -1,5 +1,5 @@
 <template>
-    <TaskSetting class="task-setting">
+    <TaskSetting class="task-setting" fixedTab="result">
         <template #task-content> </template>
         <template #result-content>
             <div class="item">
@@ -46,29 +46,6 @@ import { ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
 import TaskTitle from '@components/task-setting-template/task-title.vue';
 
-const modelSelect = ref();
-const modelOptions = ref([
-    {
-        label: '型号1',
-        value: '1',
-    },
-    {
-        label: '型号2',
-        value: '2',
-    },
-]);
-const confidenceSelect = ref();
-const confidenceOptions = ref([
-    {
-        label: '型号1',
-        value: '1',
-    },
-    {
-        label: '型号2',
-        value: '2',
-    },
-]);
-
 const measureResultList = ref([
     {
         order: '1',
@@ -95,33 +72,6 @@ const measureResultList = ref([
         font-size: 16px;
         color: #49546b;
         margin-bottom: 10px;
-    }
-
-    :deep(.el-select) {
-        --el-fill-color-blank: #040914;
-
-        margin-top: 10px;
-
-        &__wrapper {
-            box-shadow: none;
-        }
-    }
-
-    :deep(.el-select__popper) {
-        background-color: #040914;
-
-        .is-selected {
-            background-color: #0d1425;
-        }
-        .is-hovering {
-            background-color: transparent;
-            color: var(--el-color-primary);
-            font-weight: bold;
-
-            &.is-selected {
-                background-color: #0d1425;
-            }
-        }
     }
 
     .row {
