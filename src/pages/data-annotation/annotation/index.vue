@@ -23,31 +23,31 @@ const operationList = [
         icon: importIcon,
         activeIcon: importActiveIcon,
         name: '导入',
-        callBack() {},
+        callback() {},
     },
     {
         icon: savePathIcon,
         activeIcon: savePathActiveIcon,
         name: '存储路径',
-        callBack() {},
+        callback() {},
     },
     {
         icon: prevIcon,
         activeIcon: prevActiveIcon,
         name: '上一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: nextIcon,
         activeIcon: nextActiveIcon,
         name: '下一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: saveIcon,
         activeIcon: saveActiveIcon,
         name: '保存',
-        callBack() {},
+        callback() {},
     },
 ];
 </script>

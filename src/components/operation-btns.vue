@@ -30,6 +30,7 @@ const handleClick = (item, index) => {
         activeIndex.value = -1;
     } else {
         activeIndex.value = index;
+        console.log('xxxx', item);
         item.callback && item.callback();
     }
 };

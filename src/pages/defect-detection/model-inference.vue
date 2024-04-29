@@ -17,19 +17,19 @@ const operationList = [
         icon: importIcon,
         activeIcon: importActiveIcon,
         name: '导入',
-        callBack() {},
+        callback() {},
     },
     {
         icon: analyzeIcon,
         activeIcon: analyzeActiveIcon,
         name: '处理分析',
-        callBack() {},
+        callback() {},
     },
     {
         icon: saveIcon,
         activeIcon: saveActiveIcon,
         name: '保存',
-        callBack() {},
+        callback() {},
     },
 ];
 </script>

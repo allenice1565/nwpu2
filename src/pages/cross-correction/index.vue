@@ -23,37 +23,37 @@ const operationList = [
         icon: transformIcon,
         activeIcon: transformActiveIcon,
         name: '数据转换',
-        callBack() {},
+        callback() {},
     },
     {
         icon: importIcon,
         activeIcon: importActiveIcon,
         name: '导入',
-        callBack() {},
+        callback() {},
     },
     {
         icon: analyzeIcon,
         activeIcon: analyzeActiveIcon,
         name: '处理分析',
-        callBack() {},
+        callback() {},
     },
     {
         icon: prevIcon,
         activeIcon: prevActiveIcon,
         name: '上一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: nextIcon,
         activeIcon: nextActiveIcon,
         name: '下一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: saveIcon,
         activeIcon: saveActiveIcon,
         name: '保存',
-        callBack() {},
+        callback() {},
     },
 ];
 </script>

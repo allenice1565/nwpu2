@@ -2,10 +2,13 @@
     <div class="thickness-measurement">
         <OperationBtns class="operation" :operationList="operationList" />
         <TaskSetting class="task-setting"></TaskSetting>
+        <DataTransferModal v-model:dialogVisible="dataTransferModalVisible" />
     </div>
 </template>
 <script setup>
+import { ref } from 'vue';
 import OperationBtns from '@components/operation-btns.vue';
+import DataTransferModal from '@components/data-transfer-modal.vue';
 import TaskSetting from './components/task-setting.vue';
 import transformIcon from '@assets/images/common/operation-icon/transform.png';
 import transformActiveIcon from '@assets/images/common/operation-icon/transform-active.png';
@@ -20,42 +23,46 @@ import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
 
+const dataTransferModalVisible = ref(false);
 const operationList = [
     {
         icon: transformIcon,
         activeIcon: transformActiveIcon,
         name: '数据转换',
-        callBack() {},
+        callback() {
+            dataTransferModalVisible.value = true;
+            return true;
+        },
     },
     {
         icon: importIcon,
         activeIcon: importActiveIcon,
         name: '导入',
-        callBack() {},
+        callback() {},
     },
     {
         icon: analyzeIcon,
         activeIcon: analyzeActiveIcon,
         name: '处理分析',
-        callBack() {},
+        callback() {},
     },
     {
         icon: prevIcon,
         activeIcon: prevActiveIcon,
         name: '上一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: nextIcon,
         activeIcon: nextActiveIcon,
         name: '下一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: saveIcon,
         activeIcon: saveActiveIcon,
         name: '保存',
-        callBack() {},
+        callback() {},
     },
 ];
 </script>

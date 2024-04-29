@@ -17,19 +17,19 @@ const operationList = [
         icon: prevIcon,
         activeIcon: prevActiveIcon,
         name: '上一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: nextIcon,
         activeIcon: nextActiveIcon,
         name: '下一张',
-        callBack() {},
+        callback() {},
     },
     {
         icon: saveIcon,
         activeIcon: saveActiveIcon,
         name: '保存',
-        callBack() {},
+        callback() {},
     },
 ];
 </script>
