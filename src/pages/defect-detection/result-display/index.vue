@@ -45,5 +45,12 @@ const operationList = [
         top: 50%;
         transform: translateY(-50%);
     }
+
+    .task-setting {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 </style>

@@ -47,21 +47,21 @@ const routes = [
                         path: '/defect-detection/model-inference',
                         component: () =>
                             import(
-                                '@pages/defect-detection/model-inference.vue'
+                                '@pages/defect-detection/model-inference/index.vue'
                             ),
                     },
                     {
                         path: '/defect-detection/result-display',
                         component: () =>
                             import(
-                                '@pages/defect-detection/result-display.vue'
+                                '@pages/defect-detection/result-display/index.vue'
                             ),
                     },
                     {
                         path: '/defect-detection/model-training',
                         component: () =>
                             import(
-                                '@pages/defect-detection/model-training.vue'
+                                '@pages/defect-detection/model-training/index.vue'
                             ),
                     },
                 ],
