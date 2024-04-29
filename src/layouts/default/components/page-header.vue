@@ -75,30 +75,6 @@
                         class="select-none !text-[18px] !leading-[56px] !p-[25px]"
                         @click="menuClick(item.path)"
                     >
-                        <svg
-                            class="header-menu-item-prefix w-[8px] mr-[12px]"
-                            version="1.1"
-                            id="图层_1"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                            x="0px"
-                            y="0px"
-                            viewBox="0 0 8 12"
-                            style="enable-background: new 0 0 8 12"
-                            xml:space="preserve"
-                        >
-                            <g>
-                                <rect class="st0" width="4" height="4" />
-                                <rect
-                                    x="4"
-                                    y="4"
-                                    class="st0"
-                                    width="4"
-                                    height="4"
-                                />
-                                <rect y="8" class="st0" width="4" height="4" />
-                            </g>
-                        </svg>
                         {{ item.label }}</el-menu-item
                     >
                 </template>

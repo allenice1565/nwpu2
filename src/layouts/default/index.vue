@@ -1,8 +1,3 @@
-<script setup>
-import PageHeader from './components/page-header.vue';
-import PageFooter from './components/page-footer.vue';
-</script>
-
 <template>
     <div class="my-container">
         <PageHeader />
@@ -12,6 +7,10 @@ import PageFooter from './components/page-footer.vue';
         <PageFooter />
     </div>
 </template>
+<script setup>
+import PageHeader from './components/page-header.vue';
+import PageFooter from './components/page-footer.vue';
+</script>
 <style scoped lang="less">
 .my-container {
     width: 100%;
