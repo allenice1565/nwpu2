@@ -1,10 +1,15 @@
 <template>
     <div class="cross-correction">
         <OperationBtns class="operation" :operationList="operationList" />
+        <TaskSetting class="task-setting"></TaskSetting>
+        <DataTransferModal v-model:dialogVisible="dataTransferModalVisible" />
     </div>
 </template>
 <script setup>
+import { ref } from 'vue';
 import OperationBtns from '@components/operation-btns.vue';
+import DataTransferModal from '@components/data-transfer-modal.vue';
+import TaskSetting from './components/task-setting.vue';
 import transformIcon from '@assets/images/common/operation-icon/transform.png';
 import transformActiveIcon from '@assets/images/common/operation-icon/transform-active.png';
 import importIcon from '@assets/images/common/operation-icon/import.png';
@@ -18,12 +23,16 @@ import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
 
+const dataTransferModalVisible = ref(false);
 const operationList = [
     {
         icon: transformIcon,
         activeIcon: transformActiveIcon,
         name: '数据转换',
-        callback() {},
+        callback() {
+            dataTransferModalVisible.value = true;
+            return true;
+        },
     },
     {
         icon: importIcon,
@@ -66,6 +75,13 @@ const operationList = [
     .operation {
         position: absolute;
         left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .task-setting {
+        position: absolute;
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
     }
