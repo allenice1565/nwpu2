@@ -1,6 +1,6 @@
 <template>
     <div class="task-setting-title">
-        <img :src="icon" alt="" width="16px" height="16px" />
+        <img v-if="icon" :src="icon" alt="" width="16px" height="16px" />
         <span>{{ name }}</span>
     </div>
 </template>
