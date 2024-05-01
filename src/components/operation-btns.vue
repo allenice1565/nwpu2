@@ -30,10 +30,14 @@ const handleClick = (item, index) => {
         activeIndex.value = -1;
     } else {
         activeIndex.value = index;
-        console.log('xxxx', item);
         item.callback && item.callback();
     }
 };
+const reset = () => {
+    activeIndex.value = -1;
+};
+
+defineExpose({ reset });
 </script>
 <style scoped lang="less">
 .operation {

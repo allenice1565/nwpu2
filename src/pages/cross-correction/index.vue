@@ -1,13 +1,17 @@
 <template>
     <div class="cross-correction">
         <img :src="imgSrc" alt="" />
-        <OperationBtns class="operation" :operationList="operationList" />
+        <OperationBtns
+            class="operation"
+            ref="operationRef"
+            :operationList="operationList"
+        />
         <TaskSetting class="task-setting"></TaskSetting>
         <DataTransferModal v-model:dialogVisible="dataTransferModalVisible" />
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import OperationBtns from '@components/operation-btns.vue';
 import DataTransferModal from '@components/data-transfer-modal.vue';
 import TaskSetting from './components/task-setting.vue';
@@ -26,6 +30,7 @@ import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png
 import img from '@assets/images/home/bg.jpg';
 
 const imgSrc = ref(img);
+const operationRef = ref();
 const dataTransferModalVisible = ref(false);
 const operationList = [
     {
@@ -68,6 +73,9 @@ const operationList = [
         callback() {},
     },
 ];
+watch(dataTransferModalVisible, (val) => {
+    !val && operationRef.value.reset();
+});
 </script>
 <style scoped lang="less">
 .cross-correction {
