@@ -6,37 +6,27 @@
             :before-close="handleClose"
         >
             <div class="content">
-                <el-upload
-                    ref="upload1"
-                    class="upload"
-                    v-model:file-list="fileList1"
-                    :limit="1"
-                    :on-exceed="(val) => handleExceed(val, upload1)"
-                    :auto-upload="false"
-                >
-                    <template #trigger>
-                        <div class="input-box">
-                            <span class="placeholder">输入路径</span>
-                            <el-button type="primary">选择文件夹</el-button>
-                        </div>
-                    </template>
-                </el-upload>
-                <el-upload
-                    ref="upload2"
-                    class="upload"
-                    :limit="1"
-                    v-model:file-list="fileList2"
-                    :on-exceed="(val) => handleExceed(val, upload2)"
-                    :auto-upload="false"
-                >
-                    <template #trigger>
-                        <div class="input-box">
-                            <span class="placeholder">输出路径</span>
-                            <el-button type="primary">选择文件夹</el-button>
-                        </div>
-                    </template>
-                </el-upload>
-                <el-progress :percentage="percentage" :show-text="false" />
+                <div class="row">
+                    <el-input
+                        class="path-input"
+                        v-model="fileList1"
+                        placeholder="输入路径"
+                    />
+                    <el-button type="primary">选择文件夹</el-button>
+                </div>
+                <div class="row">
+                    <el-input
+                        class="path-input"
+                        v-model="fileList2"
+                        placeholder="输出路径"
+                    />
+                    <el-button type="primary">选择文件夹</el-button>
+                </div>
+                <el-progress
+                    class="progress"
+                    :percentage="percentage"
+                    :show-text="false"
+                />
             </div>
             <template #footer>
                 <div class="dialog-footer">
@@ -105,17 +95,16 @@ const handleConfirm = () => {
 }
 
 .content {
-    padding: 0 30px;
+    padding: 0 20px;
 
-    :deep(.upload) {
+    .row {
         width: 100%;
         margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        height: 56px;
 
-        .el-upload {
-            width: 100%;
-        }
-
-        .input-box {
+        :deep(.path-input) {
             flex: 1;
             height: 56px;
             padding-left: 30px;
@@ -125,18 +114,35 @@ const handleConfirm = () => {
             justify-content: space-between;
             align-items: center;
 
-            .placeholder {
-                font-weight: 500;
-                font-size: 18px;
-                color: #727fa1;
+            .el-input__wrapper {
+                background-color: #232f4e;
+                box-shadow: none;
+                padding-right: 30px;
             }
 
-            .el-button {
-                height: 100%;
-                border-radius: 5px;
-                color: #000;
+            input {
+                font-size: 18px;
+                color: #fff;
+
+                &::placeholder {
+                    font-weight: 500;
+                    font-size: 18px;
+                    color: #727fa1;
+                }
             }
         }
+        .el-button {
+            width: 125px;
+            height: 100%;
+            border-radius: 5px;
+            color: #000;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    .progress {
+        padding-top: 10px;
     }
 }
 
