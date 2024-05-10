@@ -9,6 +9,10 @@ const routes = [
         redirect: '/home',
         children: [
             {
+                path: '/home',
+                component: Home,
+            },
+            {
                 path: '/cross-correction',
                 component: () => import('@pages/cross-correction/index.vue'),
             },
@@ -67,10 +71,6 @@ const routes = [
                 ],
             },
         ],
-    },
-    {
-        path: '/home',
-        component: Home,
     },
 ];
 

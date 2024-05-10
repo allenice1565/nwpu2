@@ -22,7 +22,19 @@
             </div>
             <div class="item">
                 <TaskTitle name="型号信息" />
-                <el-checkbox
+                <el-select
+                    v-model="versionSelect"
+                    placeholder="请选择"
+                    :teleported="false"
+                >
+                    <el-option
+                        v-for="item in versionInfoOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    />
+                </el-select>
+                <!-- <el-checkbox
                     label="全选"
                     v-model="versionInfoAllCheck"
                     @change="hanleVersionAllCheck"
@@ -35,7 +47,7 @@
                         :value="item.value"
                         @change="hanleVersionSingleCheck"
                     />
-                </el-checkbox-group>
+                </el-checkbox-group> -->
             </div>
             <div class="item">
                 <TaskTitle name="统计信息" />
@@ -152,6 +164,32 @@ const hanleStatisticsSingleCheck = () => {
     flex-direction: column;
     margin-top: 30px;
 
+    :deep(.el-select) {
+        --el-fill-color-blank: #040914;
+
+        margin-top: 10px;
+
+        &__wrapper {
+            box-shadow: none;
+        }
+    }
+
+    :deep(.el-select__popper) {
+        background-color: #040914;
+
+        .is-selected {
+            background-color: #0d1425;
+        }
+        .is-hovering {
+            background-color: transparent;
+            color: var(--el-color-primary);
+            font-weight: bold;
+
+            &.is-selected {
+                background-color: #0d1425;
+            }
+        }
+    }
     :deep(.date-picker) {
         --el-date-editor-width: 100%;
     }
