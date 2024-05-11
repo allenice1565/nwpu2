@@ -1,17 +1,21 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+    createRouter,
+    createWebHashHistory,
+    createWebHistory,
+} from 'vue-router';
 import Home from '@pages/home/index.vue';
 import DefaultLayout from '@layouts/default/index.vue';
 
 const routes = [
     {
+        path: '/home',
+        component: Home,
+    },
+    {
         path: '/',
         component: DefaultLayout,
         redirect: '/home',
         children: [
-            {
-                path: '/home',
-                component: Home,
-            },
             {
                 path: '/cross-correction',
                 component: () => import('@pages/cross-correction/index.vue'),
@@ -75,7 +79,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 });
 
