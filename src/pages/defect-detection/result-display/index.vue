@@ -2,11 +2,11 @@
     <div class="result-display">
         <div class="left">
             <img :src="imgSrc1" alt="" />
-            <el-button type="primary">输入</el-button>
+            <el-text type="primary">输入</el-text>
         </div>
         <div class="right">
             <img :src="imgSrc2" alt="" />
-            <el-button type="primary">输出</el-button>
+            <el-text type="primary">输出</el-text>
         </div>
         <OperationBtns class="operation" :operationList="operationList" />
         <TaskSetting class="task-setting"></TaskSetting>
@@ -64,12 +64,14 @@ const operationList = [
         img {
             user-select: none;
             -webkit-user-drag: none;
+            height: 100%;
         }
 
-        .el-button {
+        .el-text {
             position: absolute;
             left: 5px;
             top: 5px;
+            cursor: default;
         }
     }
     .left {
