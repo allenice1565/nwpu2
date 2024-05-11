@@ -1,22 +1,35 @@
 <template>
     <TaskSetting class="task-setting">
         <template #task-content>
-            <div class="item ">
+            <div class="item">
                 <TaskTitle name="标注结果" />
-                <div class="annotation-result">
+                <div ref="resultRef" class="annotation-result">
                     <div class="head row">
                         <div class="col">目标类别</div>
                         <div class="col">中心位置</div>
                         <div class="col">目标大小</div>
                         <div class="col"></div>
                     </div>
-                    <div class="body row" v-for="(item, index) in annotationList">
+                    <div
+                        class="body row"
+                        v-for="(item, index) in annotationList"
+                    >
                         <div class="col">{{ item.type }}</div>
                         <div class="col">{{ item.position }}</div>
                         <div class="col">{{ item.shape }}</div>
-                        <div class="col"><el-icon color="#fff" class="delete" @click="handleDelete(index)"><Delete /></el-icon></div>
+                        <div class="col">
+                            <el-icon
+                                color="#fff"
+                                class="delete"
+                                @click="handleDelete(index)"
+                                ><Delete
+                            /></el-icon>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="add" @click="handleAdd">
+                <el-icon color="#68d6e5"><Plus /></el-icon>
             </div>
         </template>
         <template #result-content></template>
@@ -79,12 +92,22 @@ const annotationList = ref([
         shape: 'w*h',
     },
 ]);
-const handleDelete = (index)=>{
-    annotationList.value.splice(index, 1)
-}
+const resultRef = ref();
+const handleAdd = () => {
+    annotationList.value.push({
+        type: 'c1',
+        position: 'x1,y1',
+        shape: 'w*h',
+    });
+    resultRef.value.scrollTo(0, resultRef.value.scrollHeight);
+};
+
+const handleDelete = (index) => {
+    annotationList.value.splice(index, 1);
+};
 </script>
 <style scoped lang="less">
-.annotation-result{
+.annotation-result {
     max-height: 300px;
     overflow-y: auto;
     margin-top: 15px;
@@ -110,7 +133,7 @@ const handleDelete = (index)=>{
             border-right: none;
             border-bottom: none;
 
-            .delete{
+            .delete {
                 cursor: pointer;
             }
 
@@ -123,7 +146,7 @@ const handleDelete = (index)=>{
     .head {
         margin-top: 15px;
 
-        &:nth-child(1){
+        &:nth-child(1) {
             margin-top: 0;
         }
 
@@ -131,5 +154,17 @@ const handleDelete = (index)=>{
             border-top: none;
         }
     }
+}
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    border-radius: 3px;
+    border: 1px dashed #68d6e5;
+    cursor: pointer;
+    background: #0d1425;
+    margin-top: 15px;
 }
 </style>

@@ -23,7 +23,7 @@
             <div class="item">
                 <TaskTitle name="型号信息" />
                 <el-select
-                    v-model="versionSelect"
+                    v-model="versionInfo"
                     placeholder="请选择"
                     :teleported="false"
                 >
@@ -34,20 +34,6 @@
                         :value="item.value"
                     />
                 </el-select>
-                <!-- <el-checkbox
-                    label="全选"
-                    v-model="versionInfoAllCheck"
-                    @change="hanleVersionAllCheck"
-                />
-                <el-checkbox-group v-model="versionInfo">
-                    <el-checkbox
-                        v-for="item in versionInfoOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                        @change="hanleVersionSingleCheck"
-                    />
-                </el-checkbox-group> -->
             </div>
             <div class="item">
                 <TaskTitle name="统计信息" />
