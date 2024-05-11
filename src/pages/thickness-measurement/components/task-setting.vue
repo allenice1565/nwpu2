@@ -28,7 +28,7 @@
                         <div class="col">人工修正</div>
                         <div class="col"></div>
                     </div>
-                    <div class="body row" v-for="item in measureResultList">
+                    <div class="body row" v-for="item in dataList">
                         <div class="col">{{ item.order }}</div>
                         <div class="col">
                             {{ item.position[0] }}<br />{{ item.position[1] }}
@@ -84,8 +84,9 @@ const versionOptions = ref([
         value: '2',
     },
 ]);
+
 const scale = ref(1);
-const measureResultList = ref([
+const dataList = ref([
     {
         order: 1,
         position: ['x1,y1', 'x2,y2'],
@@ -125,13 +126,13 @@ const measureResultList = ref([
 ]);
 
 const handleDelete = (index) => {
-    measureResultList.value.splice(index, 1);
+    dataList.value.splice(index, 1);
 };
 
 const resultRef = ref();
 const handleAdd = async () => {
-    measureResultList.value.push({
-        order: measureResultList.value.at(-1)?.order + 1 || 1,
+    dataList.value.push({
+        order: dataList.value.at(-1)?.order + 1 || 1,
         position: ['x1,y1', 'x2,y2'],
         shape: '10mm*10mm',
         hand: '10mm*10mm',
