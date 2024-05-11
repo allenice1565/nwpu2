@@ -3,7 +3,7 @@
         <template #task-content>
             <div class="item">
                 <TaskTitle name="标注结果" />
-                <div ref="resultRef" class="annotation-result">
+                <div ref="resultRef" class="result-list">
                     <div class="head row">
                         <div class="col">目标类别</div>
                         <div class="col">中心位置</div>
@@ -36,7 +36,7 @@
     </TaskSetting>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { nextTick, ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
 import TaskTitle from '@components/task-setting-template/task-title.vue';
 
@@ -99,7 +99,9 @@ const handleAdd = () => {
         position: 'x1,y1',
         shape: 'w*h',
     });
-    resultRef.value.scrollTo(0, resultRef.value.scrollHeight);
+    nextTick(() => {
+        resultRef.value.scrollTo(0, resultRef.value.scrollHeight);
+    });
 };
 
 const handleDelete = (index) => {
@@ -107,7 +109,7 @@ const handleDelete = (index) => {
 };
 </script>
 <style scoped lang="less">
-.annotation-result {
+.result-list {
     max-height: 300px;
     overflow-y: auto;
     margin-top: 15px;
