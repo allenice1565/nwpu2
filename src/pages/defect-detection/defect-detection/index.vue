@@ -18,6 +18,10 @@ import OperationBtns from '@components/operation-btns.vue';
 import TaskSetting from './components/task-setting.vue';
 import importIcon from '@assets/images/common/operation-icon/import.png';
 import importActiveIcon from '@assets/images/common/operation-icon/import-active.png';
+import prevIcon from '@assets/images/common/operation-icon/prev.png';
+import prevActiveIcon from '@assets/images/common/operation-icon/prev-active.png';
+import nextIcon from '@assets/images/common/operation-icon/next.png';
+import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
 import analyzeIcon from '@assets/images/common/operation-icon/analyze.png';
 import analyzeActiveIcon from '@assets/images/common/operation-icon/analyze-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
@@ -31,6 +35,18 @@ const operationList = [
         icon: importIcon,
         activeIcon: importActiveIcon,
         name: '导入',
+        callback() {},
+    },
+    {
+        icon: prevIcon,
+        activeIcon: prevActiveIcon,
+        name: '上一张',
+        callback() {},
+    },
+    {
+        icon: nextIcon,
+        activeIcon: nextActiveIcon,
+        name: '下一张',
         callback() {},
     },
     {

@@ -32,12 +32,6 @@
                     </div>
                 </div>
                 <div class="item">
-                    <div class="label">Patience:</div>
-                    <div class="value">
-                        <el-input v-model="patience"></el-input>
-                    </div>
-                </div>
-                <div class="item">
                     <div class="label">Optimizer:</div>
                     <div class="value">
                         <el-select
@@ -54,21 +48,28 @@
                         </el-select>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="label">Data:</div>
-                    <div class="value">
-                        <el-input v-model="data"></el-input>
-                    </div>
+            </div>
+        </template>
+        <template #result-content>
+            <div class="item">
+                <div class="label">IOU:</div>
+                <div class="value">
+                    <el-input v-model="iou"></el-input>
                 </div>
-                <div class="item">
-                    <div class="label">Cfg:</div>
-                    <div class="value">
-                        <el-input v-model="cfg"></el-input>
-                    </div>
+            </div>
+            <div class="item">
+                <div class="label">Recall:</div>
+                <div class="value">
+                    <el-input v-model="recall"></el-input>
+                </div>
+            </div>
+            <div class="item">
+                <div class="label">Precision:</div>
+                <div class="value text">
+                    <el-input v-model="precision"></el-input>
                 </div>
             </div>
         </template>
-        <template #result-content> </template>
     </TaskSetting>
 </template>
 <script setup>
@@ -76,6 +77,9 @@ import { ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
 
 const backboneSelect = ref();
+const iou = ref();
+const recall = ref();
+const precision = ref();
 const backboneOptions = ref([
     {
         label: '型号1',
@@ -89,7 +93,6 @@ const backboneOptions = ref([
 
 const epochs = ref();
 const batchSize = ref();
-const patience = ref();
 const optimizerSelect = ref();
 const optimizerOptions = ref([
     {
@@ -101,8 +104,6 @@ const optimizerOptions = ref([
         value: '2',
     },
 ]);
-const data = ref();
-const cfg = ref();
 </script>
 <style scoped lang="less">
 .item {
@@ -150,6 +151,9 @@ const cfg = ref();
                     background-color: #0d1425;
                 }
             }
+        }
+
+        &.text {
         }
     }
 }

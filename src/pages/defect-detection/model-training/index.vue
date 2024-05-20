@@ -20,10 +20,16 @@ import importIcon from '@assets/images/common/operation-icon/import.png';
 import importActiveIcon from '@assets/images/common/operation-icon/import-active.png';
 import savePathIcon from '@assets/images/common/operation-icon/save-path.png';
 import savePathActiveIcon from '@assets/images/common/operation-icon/save-path-active.png';
+import prevIcon from '@assets/images/common/operation-icon/prev.png';
+import prevActiveIcon from '@assets/images/common/operation-icon/prev-active.png';
+import nextIcon from '@assets/images/common/operation-icon/next.png';
+import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
 import startIcon from '@assets/images/common/operation-icon/start-training.png';
 import startActiveIcon from '@assets/images/common/operation-icon/start-training-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
+import analyzeIcon from '@assets/images/common/operation-icon/analyze.png';
+import analyzeActiveIcon from '@assets/images/common/operation-icon/analyze-active.png';
 import img from '@assets/images/home/bg.jpg';
 
 const imgSrc1 = ref(img);
@@ -36,15 +42,33 @@ const operationList = [
         callback() {},
     },
     {
-        icon: savePathIcon,
-        activeIcon: savePathActiveIcon,
-        name: '存储路径',
+        icon: prevIcon,
+        activeIcon: prevActiveIcon,
+        name: '上一张',
+        callback() {},
+    },
+    {
+        icon: nextIcon,
+        activeIcon: nextActiveIcon,
+        name: '下一张',
+        callback() {},
+    },
+    {
+        icon: analyzeIcon,
+        activeIcon: analyzeActiveIcon,
+        name: '推理',
         callback() {},
     },
     {
         icon: startIcon,
         activeIcon: startActiveIcon,
-        name: '开始训练',
+        name: '画框',
+        callback() {},
+    },
+    {
+        icon: savePathIcon,
+        activeIcon: savePathActiveIcon,
+        name: '删除',
         callback() {},
     },
     {

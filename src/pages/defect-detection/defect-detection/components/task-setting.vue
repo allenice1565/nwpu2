@@ -4,33 +4,33 @@
             <div class="item">
                 <span class="item-title">模型参数设置</span>
                 <TaskTitle name="检测模型" />
-                <el-select
-                    v-model="modelSelect"
-                    placeholder="请选择"
-                    :teleported="false"
-                >
-                    <el-option
-                        v-for="item in modelOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    />
-                </el-select>
+                <div class="model-path" @click="handleSelectFile">
+                    {{ modelSelect.name || '请选择' }}
+                </div>
+                <input
+                    ref="fileInputRef"
+                    type="file"
+                    style="display: none"
+                    @input="hanleInput"
+                />
             </div>
             <div class="item">
-                <TaskTitle name="置信度" />
-                <el-select
-                    v-model="confidenceSelect"
-                    placeholder="请选择"
-                    :teleported="false"
-                >
-                    <el-option
-                        v-for="item in confidenceOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    />
-                </el-select>
+                <TaskTitle name="IOU" />
+                <el-input
+                    type="number"
+                    placeholder-class="placeholderStyle"
+                    v-model="iou"
+                    placeholder="请输入"
+                ></el-input>
+            </div>
+            <div class="item">
+                <TaskTitle name="比例尺" />
+                <el-input
+                    type="number"
+                    placeholder-class="placeholderStyle"
+                    v-model="scale"
+                    placeholder="请输入"
+                ></el-input>
             </div>
         </template>
         <template #result-content>
@@ -45,12 +45,18 @@
                         <div class="col"></div>
                     </div>
                     <div class="body row" v-for="item in dataList">
-                        <div class="col">{{ item.order }}</div>
                         <div class="col">
-                            {{ item.position[0] }}<br />{{ item.position[1] }}
+                            <el-input v-model="item.order"></el-input>
                         </div>
-                        <div class="col">{{ item.shape }}</div>
-                        <div class="col">{{ item.hand }}</div>
+                        <div class="col">
+                            <el-input v-model="item.position"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.shape"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.hand"></el-input>
+                        </div>
                         <div class="col">
                             <el-icon
                                 color="#fff"
@@ -65,21 +71,6 @@
             <div class="add" @click="handleAdd">
                 <el-icon color="#68d6e5"><Plus /></el-icon>
             </div>
-            <div class="item">
-                <TaskTitle name="推理结果" />
-                <div class="inference-item">
-                    <div class="label">ioU:</div>
-                    <div class="value"></div>
-                </div>
-                <div class="inference-item">
-                    <div class="label">Recall:</div>
-                    <div class="value"></div>
-                </div>
-                <div class="inference-item">
-                    <div class="label">Precision:</div>
-                    <div class="value"></div>
-                </div>
-            </div>
         </template>
     </TaskSetting>
 </template>
@@ -88,28 +79,10 @@ import { nextTick, ref } from 'vue';
 import TaskSetting from '@components/task-setting-template/index.vue';
 import TaskTitle from '@components/task-setting-template/task-title.vue';
 
-const modelSelect = ref();
-const modelOptions = ref([
-    {
-        label: '型号1',
-        value: '1',
-    },
-    {
-        label: '型号2',
-        value: '2',
-    },
-]);
-const confidenceSelect = ref();
-const confidenceOptions = ref([
-    {
-        label: '型号1',
-        value: '1',
-    },
-    {
-        label: '型号2',
-        value: '2',
-    },
-]);
+const fileInputRef = ref();
+const modelSelect = ref({});
+const iou = ref();
+const scale = ref(1);
 
 const dataList = ref([
     {
@@ -142,15 +115,19 @@ const handleAdd = async () => {
         resultRef.value.scrollTo(0, resultRef.value.scrollHeight);
     });
 };
+
+const handleSelectFile = () => {
+    fileInputRef.value.click();
+};
+const hanleInput = (e) => {
+    modelSelect.value = e.target.files[0];
+};
 </script>
 <style scoped lang="less">
 .result-list {
     max-height: 260px;
     overflow-y: auto;
     margin-top: 15px;
-}
-.table-list {
-    flex: 1;
 }
 .item {
     display: flex;
@@ -164,30 +141,9 @@ const handleAdd = async () => {
         margin-bottom: 10px;
     }
 
-    :deep(.el-select) {
-        --el-fill-color-blank: #040914;
-
-        margin-top: 10px;
-
-        &__wrapper {
-            box-shadow: none;
-        }
-    }
-
-    :deep(.el-select__popper) {
-        background-color: #040914;
-
-        .is-selected {
-            background-color: #0d1425;
-        }
-        .is-hovering {
-            background-color: transparent;
-            color: var(--el-color-primary);
-            font-weight: bold;
-
-            &.is-selected {
-                background-color: #0d1425;
-            }
+    :deep(.el-input) {
+        input::placeholder {
+            color: #a8abb2;
         }
     }
 
@@ -195,7 +151,6 @@ const handleAdd = async () => {
         display: flex;
 
         .col {
-            padding: 10px;
             font-weight: 500;
             font-size: 12px;
             min-width: 0;
@@ -208,6 +163,18 @@ const handleAdd = async () => {
             border-bottom: none;
             white-space: wrap;
             word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            :deep(.el-input) {
+                margin-top: 0;
+                input {
+                    color: #fff;
+                    background: #040914;
+                    text-align: center;
+                }
+            }
 
             .delete {
                 cursor: pointer;
@@ -230,7 +197,17 @@ const handleAdd = async () => {
         .col {
             border-top: none;
             font-size: 14px;
+            padding: 10px;
         }
+    }
+
+    .model-path {
+        height: 32px;
+        color: #a8abb2;
+        background-color: #040914;
+        line-height: 32px;
+        padding: 0 12px;
+        margin-top: 10px;
     }
 
     .scale {
