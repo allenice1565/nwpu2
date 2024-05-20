@@ -1,6 +1,7 @@
 <template>
     <div class="cross-correction">
         <img :src="imgSrc" alt="" />
+        <span class="status">{{ status }}</span>
         <OperationBtns
             class="operation"
             ref="operationRef"
@@ -73,6 +74,7 @@ const operationList = [
         callback() {},
     },
 ];
+const status = ref('未检测');
 watch(dataTransferModalVisible, (val) => {
     !val && operationRef.value.reset();
 });
@@ -82,6 +84,17 @@ watch(dataTransferModalVisible, (val) => {
     position: relative;
     width: 100%;
     height: 100%;
+    padding-left: 75px;
+    padding-right: 28px;
+
+    .status {
+        position: absolute;
+        left: 86px;
+        top: 16px;
+        color: #fff;
+        font-size: 18px;
+        user-select: none;
+    }
 
     & > img {
         user-select: none;

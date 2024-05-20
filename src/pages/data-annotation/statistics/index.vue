@@ -1,6 +1,7 @@
 <template>
     <div class="data-annotation__statistics">
         <img :src="imgSrc" alt="" />
+        <span class="status">{{ status }}</span>
         <OperationBtns class="operation" :operationList="operationList" />
         <TaskSetting class="task-setting"></TaskSetting>
     </div>
@@ -38,12 +39,24 @@ const operationList = [
         callback() {},
     },
 ];
+const status = ref('未检测');
 </script>
 <style scoped lang="less">
 .data-annotation__statistics {
     position: relative;
     width: 100%;
     height: 100%;
+    padding-left: 75px;
+    padding-right: 28px;
+
+    .status {
+        position: absolute;
+        left: 86px;
+        top: 16px;
+        color: #fff;
+        font-size: 18px;
+        user-select: none;
+    }
 
     & > img {
         user-select: none;
