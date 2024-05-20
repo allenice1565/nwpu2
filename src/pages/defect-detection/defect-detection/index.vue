@@ -69,6 +69,8 @@ const operationList = [
     width: 100%;
     height: 100%;
     display: flex;
+    padding-left: 75px;
+    padding-right: 28px;
 
     .left,
     .right {
