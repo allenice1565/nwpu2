@@ -124,13 +124,8 @@ const menuList = ref([
         children: [
             {
                 id: 41,
-                label: '模型推理',
-                path: '/defect-detection/model-inference',
-            },
-            {
-                id: 42,
-                label: '结果展示',
-                path: '/defect-detection/result-display',
+                label: '缺陷检测',
+                path: '/defect-detection/defect-detection',
             },
             {
                 id: 43,

@@ -52,17 +52,10 @@ const routes = [
                 component: () => import('@pages/defect-detection/index.vue'),
                 children: [
                     {
-                        path: '/defect-detection/model-inference',
+                        path: '/defect-detection/defect-detection',
                         component: () =>
                             import(
-                                '@pages/defect-detection/model-inference/index.vue'
-                            ),
-                    },
-                    {
-                        path: '/defect-detection/result-display',
-                        component: () =>
-                            import(
-                                '@pages/defect-detection/result-display/index.vue'
+                                '@pages/defect-detection/defect-detection/index.vue'
                             ),
                     },
                     {
