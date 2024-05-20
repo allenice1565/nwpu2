@@ -14,9 +14,15 @@
                         class="body row"
                         v-for="(item, index) in annotationList"
                     >
-                        <div class="col">{{ item.type }}</div>
-                        <div class="col">{{ item.position }}</div>
-                        <div class="col">{{ item.shape }}</div>
+                        <div class="col">
+                            <el-input v-model="item.type"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.position"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.shape"></el-input>
+                        </div>
                         <div class="col">
                             <el-icon
                                 color="#fff"
@@ -123,7 +129,6 @@ const handleDelete = (index) => {
         display: flex;
 
         .col {
-            padding: 10px;
             font-weight: 500;
             font-size: 16px;
             min-width: 0;
@@ -134,6 +139,18 @@ const handleDelete = (index) => {
             border: 1px solid #626262;
             border-right: none;
             border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            :deep(.el-input) {
+                margin-top: 0;
+                input {
+                    color: #fff;
+                    background: #040914;
+                    text-align: center;
+                }
+            }
 
             .delete {
                 cursor: pointer;
@@ -154,6 +171,7 @@ const handleDelete = (index) => {
 
         .col {
             border-top: none;
+            padding: 10px;
         }
     }
 }

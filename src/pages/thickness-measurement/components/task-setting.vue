@@ -29,12 +29,18 @@
                         <div class="col"></div>
                     </div>
                     <div class="body row" v-for="item in dataList">
-                        <div class="col">{{ item.order }}</div>
                         <div class="col">
-                            {{ item.position[0] }}<br />{{ item.position[1] }}
+                            <el-input v-model="item.order"></el-input>
                         </div>
-                        <div class="col">{{ item.shape }}</div>
-                        <div class="col">{{ item.hand }}</div>
+                        <div class="col">
+                            <el-input v-model="item.position"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.shape"></el-input>
+                        </div>
+                        <div class="col">
+                            <el-input v-model="item.hand"></el-input>
+                        </div>
                         <div class="col">
                             <el-icon
                                 color="#fff"
@@ -184,7 +190,6 @@ const handleAdd = async () => {
         display: flex;
 
         .col {
-            padding: 10px;
             font-weight: 500;
             font-size: 12px;
             min-width: 0;
@@ -197,6 +202,18 @@ const handleAdd = async () => {
             border-bottom: none;
             white-space: wrap;
             word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            :deep(.el-input) {
+                margin-top: 0;
+                input {
+                    color: #fff;
+                    background: #040914;
+                    text-align: center;
+                }
+            }
 
             .delete {
                 cursor: pointer;
@@ -219,6 +236,7 @@ const handleAdd = async () => {
         .col {
             border-top: none;
             font-size: 14px;
+            padding: 10px;
         }
     }
 
