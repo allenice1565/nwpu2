@@ -1,5 +1,5 @@
 <template>
-    <TaskSetting class="task-setting">
+    <TaskSetting class="task-setting" noresult>
         <template #task-content>
             <div class="item">
                 <TaskTitle name="统计范围" />

@@ -14,6 +14,7 @@
                         >任务设置</span
                     >
                     <span
+                        v-if="!noresult"
                         class="cursor-pointer"
                         :class="{
                             activeTab: (fixedTab ? fixedTab : tab) === 'result',
@@ -135,6 +136,10 @@ const props = defineProps({
     fixedTab: {
         type: String,
         default: '',
+    },
+    noresult: {
+        type: Boolean,
+        default: false,
     },
 });
 const expandStatus = ref(true);
