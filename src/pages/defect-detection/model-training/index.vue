@@ -16,20 +16,20 @@
 import { ref } from 'vue';
 import OperationBtns from '@components/operation-btns.vue';
 import TaskSetting from './components/task-setting.vue';
-import importIcon from '@assets/images/common/operation-icon/import.png';
-import importActiveIcon from '@assets/images/common/operation-icon/import-active.png';
-import savePathIcon from '@assets/images/common/operation-icon/save-path.png';
-import savePathActiveIcon from '@assets/images/common/operation-icon/save-path-active.png';
+import importIcon from '@assets/images/common/operation-icon/导入.png';
+import importActiveIcon from '@assets/images/common/operation-icon/导入-active.png';
+import deleteIcon from '@assets/images/common/operation-icon/删除.png';
+import deleteActiveIcon from '@assets/images/common/operation-icon/删除.png';
 import prevIcon from '@assets/images/common/operation-icon/prev.png';
 import prevActiveIcon from '@assets/images/common/operation-icon/prev-active.png';
 import nextIcon from '@assets/images/common/operation-icon/next.png';
 import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
-import startIcon from '@assets/images/common/operation-icon/start-training.png';
-import startActiveIcon from '@assets/images/common/operation-icon/start-training-active.png';
-import saveIcon from '@assets/images/common/operation-icon/save.png';
-import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
-import analyzeIcon from '@assets/images/common/operation-icon/analyze.png';
-import analyzeActiveIcon from '@assets/images/common/operation-icon/analyze-active.png';
+import outlineIcon from '@assets/images/common/operation-icon/画框.png';
+import outlineActiveIcon from '@assets/images/common/operation-icon/画框-active.png';
+import saveIcon from '@assets/images/common/operation-icon/保存.png';
+import saveActiveIcon from '@assets/images/common/operation-icon/保存-active.png';
+import referenceIcon from '@assets/images/common/operation-icon/推理.png';
+import referenceActiveIcon from '@assets/images/common/operation-icon/推理-active.png';
 import img from '@assets/images/home/bg.jpg';
 
 const imgSrc1 = ref(img);
@@ -54,20 +54,20 @@ const operationList = [
         callback() {},
     },
     {
-        icon: analyzeIcon,
-        activeIcon: analyzeActiveIcon,
+        icon: referenceIcon,
+        activeIcon: referenceActiveIcon,
         name: '推理',
         callback() {},
     },
     {
-        icon: startIcon,
-        activeIcon: startActiveIcon,
+        icon: outlineIcon,
+        activeIcon: outlineActiveIcon,
         name: '画框',
         callback() {},
     },
     {
-        icon: savePathIcon,
-        activeIcon: savePathActiveIcon,
+        icon: deleteIcon,
+        activeIcon: deleteActiveIcon,
         name: '删除',
         callback() {},
     },

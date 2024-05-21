@@ -16,14 +16,14 @@
 import { ref } from 'vue';
 import OperationBtns from '@components/operation-btns.vue';
 import TaskSetting from './components/task-setting.vue';
-import importIcon from '@assets/images/common/operation-icon/import.png';
-import importActiveIcon from '@assets/images/common/operation-icon/import-active.png';
+import fileIcon from '@assets/images/common/operation-icon/选择文件夹.png';
+import fileActiveIcon from '@assets/images/common/operation-icon/选择文件夹-active.png';
 import prevIcon from '@assets/images/common/operation-icon/prev.png';
 import prevActiveIcon from '@assets/images/common/operation-icon/prev-active.png';
 import nextIcon from '@assets/images/common/operation-icon/next.png';
 import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
-import analyzeIcon from '@assets/images/common/operation-icon/analyze.png';
-import analyzeActiveIcon from '@assets/images/common/operation-icon/analyze-active.png';
+import referenceIcon from '@assets/images/common/operation-icon/推理.png';
+import referenceActiveIcon from '@assets/images/common/operation-icon/推理-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
 import img from '@assets/images/home/bg.jpg';
@@ -32,9 +32,9 @@ const imgSrc1 = ref(img);
 const imgSrc2 = ref(img);
 const operationList = [
     {
-        icon: importIcon,
-        activeIcon: importActiveIcon,
-        name: '导入',
+        icon: fileIcon,
+        activeIcon: fileActiveIcon,
+        name: '选择文件夹',
         callback() {},
     },
     {
@@ -50,9 +50,9 @@ const operationList = [
         callback() {},
     },
     {
-        icon: analyzeIcon,
-        activeIcon: analyzeActiveIcon,
-        name: '处理分析',
+        icon: referenceIcon,
+        activeIcon: referenceActiveIcon,
+        name: '开始推理',
         callback() {},
     },
     {
