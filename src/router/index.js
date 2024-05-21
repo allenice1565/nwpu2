@@ -48,7 +48,7 @@ const routes = [
             },
             {
                 path: '/defect-detection',
-                redirect: '/defect-detection/model-inference',
+                redirect: '/defect-detection/defect-detection',
                 component: () => import('@pages/defect-detection/index.vue'),
                 children: [
                     {
