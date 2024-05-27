@@ -20,6 +20,10 @@ import nextIcon from '@assets/images/common/operation-icon/next.png';
 import nextActiveIcon from '@assets/images/common/operation-icon/next-active.png';
 import saveIcon from '@assets/images/common/operation-icon/save.png';
 import saveActiveIcon from '@assets/images/common/operation-icon/save-active.png';
+import outlineIcon from '@assets/images/common/operation-icon/画框.png';
+import outlineActiveIcon from '@assets/images/common/operation-icon/画框-active.png';
+import deleteIcon from '@assets/images/common/operation-icon/删除.png';
+import deleteActiveIcon from '@assets/images/common/operation-icon/删除.png';
 import img from '@assets/images/home/bg.jpg';
 
 const imgSrc = ref(img);
@@ -46,6 +50,18 @@ const operationList = [
         icon: nextIcon,
         activeIcon: nextActiveIcon,
         name: '下一张',
+        callback() {},
+    },
+    {
+        icon: outlineIcon,
+        activeIcon: outlineActiveIcon,
+        name: '画框',
+        callback() {},
+    },
+    {
+        icon: deleteIcon,
+        activeIcon: deleteActiveIcon,
+        name: '删除',
         callback() {},
     },
     {
